@@ -1,6 +1,6 @@
 <?php
 
-    $username = "demo";
+    $username = "singto";
     $password = "abc123";
     $host = "localhost";
     $dbname = "music_brand";

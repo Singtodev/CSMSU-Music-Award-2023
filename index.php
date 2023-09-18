@@ -1,8 +1,6 @@
 
 <?php
-
     require_once('./utils/connect_db.php');
-    
 ?>
 
 <!DOCTYPE html>
@@ -22,10 +20,10 @@
             
             <div class="relative my-1">
                 <form action="index.php" method="get">
-                    <select value="<?php echo $_GET['bid'] ? $_GET['bid'] : 0  ?>" class="px-2 py-2 bg-white rounded-md outline-none" 
+                    <select value="<?php echo (isset($_GET['bid']) && $_GET['bid'] ) ? $_GET['bid'] : 0  ?>" class="px-2 py-2 bg-white rounded-md outline-none" 
                         name="bid"
                         onchange="this.form.submit()">
-                        <option <?php echo $_GET['bid'] == 0 || !isset($_GET['bid']) ? 'selected' : ''  ?> value="0">วงดนตรีทั้งหมด</option>
+                        <option <?php echo  (isset($_GET['bid']) && $_GET['bid'] == 0) || !isset($_GET['bid']) ? 'selected' : ''  ?> value="0">วงดนตรีทั้งหมด</option>
                         <?php
                                 // query category type
                                 $sql = "select * from brand_type";
@@ -33,7 +31,7 @@
                                 $stmt->execute();
                                 $result = $stmt->get_result();
                                 while($row = $result->fetch_assoc()) { ?>
-                                    <option <?php echo $_GET['bid'] == $row['bid'] ? 'selected' : ''  ?> value="<?php echo $row['bid'] ?>"><?php echo $row['b_name'] ?></option>
+                                    <option <?php echo (isset($_GET['bid']) && $_GET['bid'] == $row['bid']) ? 'selected' : ''  ?> value="<?php echo $row['bid'] ?>"><?php echo $row['b_name'] ?></option>
                                 <?php } ?>
                         ?>
                     </select>
